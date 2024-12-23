@@ -11,6 +11,8 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
+- [Deployment](#deployment)
+  - [How to run local optimism network](#how-to-run-local-optimism-network)
 - [What is Optimism?](#what-is-optimism)
 - [Documentation](#documentation)
 - [Specification](#specification)
@@ -26,6 +28,34 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+## Deployment
+### How to run local optimism network
+```
+kurtosis run github.com/ethpandaops/optimism-package --args-file ./config/devnet-config.yaml
+```
+
+Set env
+```
+source .envrc
+```
+
+Check the enclave
+```
+kurtosis enclave inspect shy-sand
+```
+
+Check the balance
+```
+cast send --mnemonic 'test test test test test test test test test test test junk' --mnemonic-path "m/44'/60'/0'/0/0" -- --to 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 --amount 1000 --rpc-url http://127.0.0.1:51814
+
+cast balance 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 --rpc-url http://127.0.0.1:51814
+```
+
+Stop enlave
+```
+kurtosis enclave ls
+kurtosis enclave stop shy-sand
+```
 ## What is Optimism?
 
 [Optimism](https://www.optimism.io/) is a project dedicated to scaling Ethereum's technology and expanding its ability to coordinate people from across the world to build effective decentralized economies and governance systems. The [Optimism Collective](https://www.optimism.io/vision) builds open-source software that powers scalable blockchains and aims to address key governance and economic challenges in the wider Ethereum ecosystem. Optimism operates on the principle of **impact=profit**, the idea that individuals who positively impact the Collective should be proportionally rewarded with profit. **Change the incentives and you change the world.**
